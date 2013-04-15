@@ -1,0 +1,24 @@
+<opt version="0.9.1">
+  <appletconf name="ActionMenu" label="Actions" relief="false" />
+  <appletconf name="BatteryMonitor" interval="1000" />
+  <appletconf name="CPUTemp" interval="10000" units="celsius" />
+  <appletconf name="Clock" date_format="%c" format="%H:%M">
+    <events></events>
+  </appletconf>
+  <appletconf name="OpenBoxMenu" apps_in_submenu="true" label="Applications" show_control_items="true" warning_seen="true" />
+  <appletconf name="PanelPet" fortune="ALL" frames="3" image="/usr/share/perlpanel/applets/panelpet/oldwanda.png" interval="2000" />
+  <appletconf name="SetiAtHome" dir="/home/zach/.setiathome" interval="60" remote="false" />
+  <appletconf name="Volume" channel="vol" />
+  <appletconf name="null" />
+  <applets>ActionMenu</applets>
+  <applets>BatteryMonitor</applets>
+  <applets>NotificationArea</applets>
+  <applets>Tasklist::53909b1458d0988dd7bb950bf5c89368</applets>
+  <applets>Clock</applets>
+  <applets>Pager::3d2d72586163fa3e8750599e9a6e111b</applets>
+  <multi name="DriveManager::74f213de1b995f346314adf43fcc050a" point="/mnt/non-existent-mountpoint" type="drive" />
+  <multi name="Pager::3d2d72586163fa3e8750599e9a6e111b" rows="1" />
+  <multi name="Tasklist::53909b1458d0988dd7bb950bf5c89368" minimum_width="150" />
+  <multi name="null" />
+  <panel autohide="false" expand="true" has_border="true" icon_theme="Humanity-Dark" menu_icon_size="medium" position="bottom" show_quit_button="false" size="14" spacing="0" use_struts="true" />
+</opt>
