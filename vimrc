@@ -41,8 +41,6 @@ Bundle 'kien/ctrlp.vim'
 let g:ctrlp_map = "<C-p>"
 let g:ctrlp_cmd = 'CtrlPLastMode'
 
-Bundle 'vim-scripts/simple-pairs'
-
 Bundle 'sontek/rope-vim'
 
 filetype plugin on
