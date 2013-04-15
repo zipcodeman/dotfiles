@@ -2,10 +2,13 @@ export _Z_CMD=j
 . ~/bin/z/z.sh
 
 setopt autocd
+setopt promptpercent
+setopt promptsubst
 
-function precmd() {
-  PS1=$(~/bin/pyprompt zsh)
-}
+PS1='$(~/bin/pyprompt zsh)'
+# function precmd() {
+  # PS1=$(~/bin/pyprompt zsh)
+# }
 
 function chpwd() {
   emulate -L zsh
