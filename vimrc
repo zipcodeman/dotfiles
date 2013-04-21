@@ -43,6 +43,15 @@ let g:ctrlp_cmd = 'CtrlPLastMode'
 
 Bundle 'sontek/rope-vim'
 
+Bundle 'fholgado/minibufexpl.vim'
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
+
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-bundler'
+
 filetype plugin on
 
 " General editor settings
@@ -71,6 +80,7 @@ autocmd FileType python set foldmethod=indent
 
 " Build ctags for directory
 map <C-F12> :!ctags -R --exclude=.git --exclude=log *<CR>
+map <F9> :!rake spec SPEC=%<CR>
 autocmd FileType c, cpp map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " VimLaTeX
