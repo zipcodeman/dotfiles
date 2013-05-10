@@ -41,8 +41,6 @@ Bundle 'kien/ctrlp.vim'
 let g:ctrlp_map = "<C-p>"
 let g:ctrlp_cmd = 'CtrlPLastMode'
 
-Bundle 'sontek/rope-vim'
-
 Bundle 'fholgado/minibufexpl.vim'
 let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
@@ -58,9 +56,11 @@ filetype plugin on
 set tw=79                     " wrap at 79 charcters
 set colorcolumn=80            " create a colored column at 80 characters
 highlight ColorColumn ctermbg=5
-set tabstop=4                 " Set tab length to 4
+set tabstop=2                 " Set tab length to 2
+autocmd FileType python set tabstop=4
 set expandtab                 " <tab> key replaced by spaces
-set shiftwidth=4              " How many spaces to change with << and >>
+set shiftwidth=2              " How many spaces to change with << and >>
+autocmd FileType python set shiftwidth=4
 set autoindent                " Keep indents already made
 set smartindent               " Indent source code automatically
 set lbr                       " visually break long lines
@@ -91,3 +91,5 @@ au FileType tex TTarget pdf
 
 " SyntaxHighlighting
 set ofu=syntaxcomplete
+
+autocmd FileType python nmap <F8> :let pyScratch=system('python '.expand('%'))<CR>:vne<CR>:put =pyScratch<CR> :set buftype=nofile<CR>

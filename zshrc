@@ -16,3 +16,6 @@ function chpwd() {
 }
 
 PATH=$PATH:$HOME/.rvm/bin:$HOME/.aws/eb/linux/python2.7/:~/.android-tools/platform-tools:~/.android-tools/tools
+
+[[ -s /home/zmbush/.nvm/nvm.sh ]] && . /home/zmbush/.nvm/nvm.sh # This loads NVM
+
