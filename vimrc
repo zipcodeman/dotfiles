@@ -1,3 +1,4 @@
+syntax on
 set t_Co=256
 
 set nocp
@@ -34,7 +35,9 @@ au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 
 Bundle 'majutsushi/tagbar'
-so ~/.vim/tagbar-coffeescript-config
+if filereadable("~/.vim/tagbar-coffeescript-config")
+  so ~/.vim/tagbar-coffeescript-config
+end
 nmap <F8> :TagbarToggle<CR>
 
 Bundle 'kien/ctrlp.vim'
