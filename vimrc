@@ -19,8 +19,6 @@ Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
-Bundle 'tpope/vim-fugitive'
-
 Bundle 'scrooloose/nerdtree'
 map <F2> :NERDTreeToggle<CR>
 
@@ -30,9 +28,9 @@ Bundle 'klen/python-mode'
 let g:pymode_lint_write = 1
 let g:pymode_run_key = 'R'
 
-Bundle 'ervandew/supertab'
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
+" Bundle 'ervandew/supertab'
+" au FileType python set omnifunc=pythoncomplete#Complete
+" let g:SuperTabDefaultCompletionType = "context"
 
 Bundle 'majutsushi/tagbar'
 if filereadable("~/.vim/tagbar-coffeescript-config")
@@ -45,13 +43,56 @@ let g:ctrlp_map = "<C-p>"
 let g:ctrlp_cmd = 'CtrlPLastMode'
 
 Bundle 'fholgado/minibufexpl.vim'
-let g:miniBufExplMapWindowNavVim = 1 
-let g:miniBufExplMapWindowNavArrows = 1 
-let g:miniBufExplMapCTabSwitchBufs = 1 
-let g:miniBufExplModSelTarget = 1 
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
 
-Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+
+Bundle "briancollins/vim-jst"
+
+Bundle 'wting/rust.vim'
+
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'Shougo/neosnippet.vim'
+Bundle 'Shougo/neosnippet-snippets'
+
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_min_syntax_length = 1
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'spf13/vim-colors'
+
+Bundle 'honza/dockerfile.vim'
+
+Bundle 'jnwhiteh/vim-golang'
+
+syntax enable
+set background=dark
+colorscheme ir_black
 
 filetype plugin on
 
@@ -96,3 +137,6 @@ au FileType tex TTarget pdf
 set ofu=syntaxcomplete
 
 autocmd FileType python nmap <F8> :let pyScratch=system('python '.expand('%'))<CR>:vne<CR>:put =pyScratch<CR> :set buftype=nofile<CR>
+
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$\|\t/
