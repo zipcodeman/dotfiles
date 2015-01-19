@@ -126,8 +126,8 @@ hi clear Conceal
 set modelines=1
 
 " General editor settings
-set tw=100                    " wrap at 79 charcters
-set colorcolumn=101           " create a colored column at 80 characters
+set tw=100                    " wrap at 100 charcters
+set colorcolumn=101           " create a colored column at 101 characters
 highlight ColorColumn ctermbg=5
 set tabstop=2                 " Set tab length to 2
 autocmd FileType python set tabstop=4
