@@ -6,19 +6,19 @@ filetype off
 
 " Bundles
 set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'vim-scripts/vim-coffee-script'
+Plugin 'gmarik/vundle'
+Plugin 'vim-scripts/vim-coffee-script'
 
-Bundle 'Markdown'
-Bundle 'atourino/jinja.vim'
+Plugin 'Markdown'
+Plugin 'atourino/jinja.vim'
 au BufRead,BufNewFile *.j2 set filetype=jinja
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 map <F2> :NERDTreeToggle<CR>
 
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers=['jsxhint']
 
 " Bundle 'klen/python-mode'
@@ -29,48 +29,47 @@ let g:syntastic_javascript_checkers=['jsxhint']
 " au FileType python set omnifunc=pythoncomplete#Complete
 " let g:SuperTabDefaultCompletionType = "context"
 
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 if filereadable("~/.vim/tagbar-coffeescript-config")
   so ~/.vim/tagbar-coffeescript-config
 end
 nmap <F8> :TagbarToggle<CR>
 
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = "<C-p>"
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_max_files=0
 let g:ctrlp_user_command =
     \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 
-Bundle 'fholgado/minibufexpl.vim'
+Plugin 'fholgado/minibufexpl.vim'
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 
-Bundle "briancollins/vim-jst"
+Plugin 'briancollins/vim-jst'
 
-Bundle 'wting/rust.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 " Bundle 'marijnh/tern_for_vim'
 " let g:tern_map_keys=1
 " let g:tern_show_argument_hints='on_hold'
 " let g:tern#command=['tern', '--verbose']
-Bundle 'elzr/vim-json'
-Bundle 'digitaltoad/vim-jade'
+Plugin 'elzr/vim-json'
+Plugin 'digitaltoad/vim-jade'
 
-Bundle 'Shougo/neocomplcache.vim'
-Bundle 'Shougo/neosnippet.vim'
-Bundle 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
 
-Bundle 'dart-lang/dart-vim-plugin'
+Plugin 'dart-lang/dart-vim-plugin'
 
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_min_syntax_length = 1
@@ -93,28 +92,36 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'spf13/vim-colors'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'spf13/vim-colors'
 
-Bundle 'honza/dockerfile.vim'
+Plugin 'honza/dockerfile.vim'
 
-Bundle 'jnwhiteh/vim-golang'
+Plugin 'jnwhiteh/vim-golang'
 
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
+Plugin 'rust-lang/rust', {'rtp': 'src/etc/vim/'}
+let g:rust_conceal = 1
+let g:rust_conceal_pub = 1
+
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 let g:gist_clip_command = 'pbcopy'
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
 
+Plugin 'cespare/vim-toml'
+
+call vundle#end()
+filetype plugin indent on
+
 syntax enable
 set background=dark
 colorscheme ir_black
-
-filetype plugin on
+hi clear Conceal
 
 set modelines=1
 
