@@ -21,11 +21,11 @@ map <F2> :NERDTreeToggle<CR>
 Plugin 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers=['jsxhint']
 
-" Bundle 'klen/python-mode'
+" Plugin 'klen/python-mode'
 " let g:pymode_lint_write = 1
 " let g:pymode_run_key = 'R'
 
-" Bundle 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
 " au FileType python set omnifunc=pythoncomplete#Complete
 " let g:SuperTabDefaultCompletionType = "context"
 
@@ -58,7 +58,7 @@ Plugin 'briancollins/vim-jst'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-" Bundle 'marijnh/tern_for_vim'
+" Plugin 'marijnh/tern_for_vim'
 " let g:tern_map_keys=1
 " let g:tern_show_argument_hints='on_hold'
 " let g:tern#command=['tern', '--verbose']
@@ -99,11 +99,13 @@ Plugin 'honza/dockerfile.vim'
 
 Plugin 'jnwhiteh/vim-golang'
 
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
-Plugin 'rust-lang/rust', {'rtp': 'src/etc/vim/'}
+Plugin 'rust-lang/rust.vim'
 let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
 
@@ -114,6 +116,11 @@ let g:gist_show_privates = 1
 let g:gist_post_private = 1
 
 Plugin 'cespare/vim-toml'
+Plugin 'vim-scripts/brainfuck-syntax'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'parkr/vim-jekyll'
+Plugin 'tpope/vim-liquid'
 
 call vundle#end()
 filetype plugin indent on
@@ -167,6 +174,12 @@ au FileType tex TTarget pdf
 set ofu=syntaxcomplete
 
 autocmd FileType python nmap <F8> :let pyScratch=system('python '.expand('%'))<CR>:vne<CR>:put =pyScratch<CR> :set buftype=nofile<CR>
+
+autocmd FileType gitcommit set tw=70
+autocmd FileType gitcommit set colorcolumn=71
+
+autocmd BufRead *.aidl setf java
+autocmd BufNewFile *.aidl setf java
 
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
