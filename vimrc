@@ -167,7 +167,9 @@ set modelines=1
 
 " General editor settings
 set tw=100                    " wrap at 100 charcters
-set colorcolumn=101           " create a colored column at 101 characters
+if exists("&colorcolumn")
+  set colorcolumn=101           " create a colored column at 101 characters
+endif
 highlight ColorColumn ctermbg=5
 set tabstop=2                 " Set tab length to 2
 autocmd FileType python set tabstop=4
@@ -209,7 +211,9 @@ set ofu=syntaxcomplete
 autocmd FileType python nmap <F8> :let pyScratch=system('python '.expand('%'))<CR>:vne<CR>:put =pyScratch<CR> :set buftype=nofile<CR>
 
 autocmd FileType gitcommit set tw=70
-autocmd FileType gitcommit set colorcolumn=71
+if exists("&colorcolumn")
+  autocmd FileType gitcommit set colorcolumn=71
+endif
 
 autocmd BufRead *.aidl setf java
 autocmd BufNewFile *.aidl setf java
