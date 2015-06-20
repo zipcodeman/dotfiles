@@ -15,8 +15,8 @@ Plugin 'Markdown'
 Plugin 'atourino/jinja.vim'
 au BufRead,BufNewFile *.j2 set filetype=jinja
 
-Plugin 'scrooloose/nerdtree'
-map <F2> :NERDTreeToggle<CR>
+" Plugin 'scrooloose/nerdtree'
+" map <F2> :NERDTreeToggle<CR>
 
 Plugin 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers=['jsxhint']
@@ -29,11 +29,32 @@ let g:syntastic_javascript_checkers=['jsxhint']
 " au FileType python set omnifunc=pythoncomplete#Complete
 " let g:SuperTabDefaultCompletionType = "context"
 
+Plugin 'abudden/taghighlight-automirror'
 Plugin 'majutsushi/tagbar'
 if filereadable("~/.vim/tagbar-coffeescript-config")
   so ~/.vim/tagbar-coffeescript-config
 end
+if ! exists('g:TagHighlightSettings')
+  let g:TagHighlightSettings = {}
+endif
+let g:TagHighlightSettings['TagFileName'] = 'tags'
+let g:TagHighlightSettings['CtagsExecutable'] = expand('~/Projects/ctags-rs/target/debug/ctags-rs')
+
 nmap <F8> :TagbarToggle<CR>
+
+ let g:tagbar_type_rust = {
+     \ 'ctagstype' : 'rust',
+     \ 'kinds' : [
+         \'T:types,type definitions',
+         \'f:functions,function definitions',
+         \'g:enum,enumeration names',
+         \'s:structure names',
+         \'m:modules,module names',
+         \'c:consts,static constants',
+         \'t:traits,traits',
+         \'i:impls,trait implementations',
+     \]
+     \}
 
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = "<C-p>"
@@ -65,32 +86,41 @@ Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Plugin 'digitaltoad/vim-jade'
 
-Plugin 'Shougo/neocomplcache.vim'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
 
-Plugin 'dart-lang/dart-vim-plugin'
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_min_syntax_length = 1
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ neocomplete#start_manual_complete()
+  function! s:check_back_space() "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction"}}}
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+" if patter matches, local omnifunc will be called
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
 
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+Plugin 'dart-lang/dart-vim-plugin'
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'spf13/vim-colors'
@@ -106,8 +136,11 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
 Plugin 'rust-lang/rust.vim'
+Plugin 'phildawes/racer'
 let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
+let g:racer_cmd = expand("~/.vim/bundle/racer/target/release/racer")
+let $RUST_SRC_PATH = expand("~/Projects/rustc/src")
 
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
