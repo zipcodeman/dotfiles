@@ -431,3 +431,75 @@ fi
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
+start_megaprompt() {
+  export PROMPT_COMMAND='PS1=$($HOME/bin/binaries/megaprompt/pyprompt)'
+}
+
+start_rs_megaprompt() {
+  live_compile=$1
+  mp="$HOME/bin/binaries/megaprompt"
+  cmd="PS1=\$($HOME/bin/megaprompt)"
+  if [ -z "$live_compile" ]; then
+    export PROMPT_COMMAND=$cmd
+  else
+    export PROMPT_COMMAND="(
+      cd $mp;
+      cargo build --release &&
+        ! cmp --silent $mp/target/release/megaprompt $HOME/bin/megaprompt &&
+        cp -fv $mp/target/release/megaprompt $HOME/bin/megaprompt
+      ); $cmd"
+  fi
+}
+
+firm() {
+  cd $HOME/Projects/Firmware/android-j
+  source build/envsetup.sh
+  lunch capri_me1-eng
+  cd ..
+  start_rs_megaprompt
+}
+
+dni () {
+  cd $HOME/Projects/Firmware/android-j/packages/apps/DroidNode
+
+  mm && \
+    adb push $OUT/system/app/DroidNode.apk /system/app && \
+    adb shell "kill \`ps | grep com.meraki.droidnode$ | tr -s ' ' | cut -d ' ' -f2\`"
+}
+dn () {
+  cd $HOME/Projects/Firmware/android-j/packages/apps/DroidNode
+
+  dni
+  while inotifywait -r -e delete -e create -e move -e modify *; do
+    dni
+  done
+}
+start_rs_megaprompt
+
+# Set up ssh-agent
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+  echo "Initializing new SSH agent..."
+  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+  echo succeeded
+  chmod 600 "${SSH_ENV}"
+  . "${SSH_ENV}" > /dev/null
+  /usr/bin/ssh-add;
+  /usr/bin/ssh-add $HOME/.ssh/id_rsa_dev100;
+}
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+  . "${SSH_ENV}" > /dev/null
+  # ps ${SSH_AGENT_PID} doesn't work under cywgin
+  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+    start_agent;
+  }
+else
+  start_agent;
+fi
+
+lpass sync
