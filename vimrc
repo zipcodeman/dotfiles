@@ -137,6 +137,7 @@ set laststatus=2
 
 Plugin 'rust-lang/rust.vim'
 Plugin 'phildawes/racer'
+set hidden
 let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
 let g:racer_cmd = expand("~/.vim/bundle/racer/target/release/racer")
