@@ -47,10 +47,8 @@ ddate;date +'%I:%M:%S.%N'
 echo
 echo -ne "\033[0;36m";uptime
 echo
-echo -ne "\033[1;31m";fortune -s
+echo -ne "\033[1;34m""Hello $USER, Welcome to bash\033[0m"
 echo
-#echo -ne "\033[1;34m""Hello $USER, Welcome to bash"
-#echo
 #echo
 
 
@@ -199,8 +197,6 @@ alias cs188="ssh -X cs188-gb@hive11.cs.berkeley.edu"
 alias cs170="ssh -X cs170-nx@hive15.cs.berkeley.edu"
 
 alias gc="ssh -X gamers@ocf.berkeley.edu"
-alias git=hub
-
 
 # alias cs61as="ssh -X cs61as-bs@nova.cs.berkeley.edu"
 # alias cs47b="ssh -X cs47b-ak@star.cs.berkeley.edu"
@@ -307,8 +303,8 @@ alias cowall='cowsay | wall'
 
 alias nautilus='nautilus --no-desktop'
 # j 
-export JPY=~/bin/j/j.py
-. ~/bin/j/j.sh
+# export JPY=~/bin/j/j.py
+# . ~/bin/j/j.sh
 
 # some handy functions
 
@@ -431,6 +427,12 @@ fi
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/bin/
+PATH=$PATH:$HOME/bin/rust/bin/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib/
+
+alias rustup="rustup --channel=nightly --prefix=~/bin/rust/ --disable-sudo"
+
 
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
 start_megaprompt() {
@@ -477,29 +479,3 @@ dn () {
   done
 }
 start_rs_megaprompt
-
-# Set up ssh-agent
-SSH_ENV="$HOME/.ssh/environment"
-
-function start_agent {
-  echo "Initializing new SSH agent..."
-  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-  echo succeeded
-  chmod 600 "${SSH_ENV}"
-  . "${SSH_ENV}" > /dev/null
-  /usr/bin/ssh-add;
-  /usr/bin/ssh-add $HOME/.ssh/id_rsa_dev100;
-}
-
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-  . "${SSH_ENV}" > /dev/null
-  # ps ${SSH_AGENT_PID} doesn't work under cywgin
-  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-    start_agent;
-  }
-else
-  start_agent;
-fi
-
-lpass sync

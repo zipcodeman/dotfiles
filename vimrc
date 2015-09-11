@@ -5,32 +5,32 @@ set nocp
 filetype off
 
 " Bundles
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
+set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/vundle'
-Plugin 'vim-scripts/vim-coffee-script'
+Plug 'gmarik/vundle'
+Plug 'vim-scripts/vim-coffee-script'
 
-Plugin 'Markdown'
-Plugin 'atourino/jinja.vim'
+Plug 'Markdown'
+Plug 'atourino/jinja.vim'
 au BufRead,BufNewFile *.j2 set filetype=jinja
 
-" Plugin 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " map <F2> :NERDTreeToggle<CR>
 
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers=['jsxhint']
 
-" Plugin 'klen/python-mode'
+" Plug 'klen/python-mode'
 " let g:pymode_lint_write = 1
 " let g:pymode_run_key = 'R'
 
-" Plugin 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 " au FileType python set omnifunc=pythoncomplete#Complete
 " let g:SuperTabDefaultCompletionType = "context"
 
-Plugin 'abudden/taghighlight-automirror'
-Plugin 'majutsushi/tagbar'
+Plug 'abudden/taghighlight-automirror'
+Plug 'majutsushi/tagbar'
 if filereadable("~/.vim/tagbar-coffeescript-config")
   so ~/.vim/tagbar-coffeescript-config
 end
@@ -56,39 +56,53 @@ nmap <F8> :TagbarToggle<CR>
      \]
      \}
 
-Plugin 'kien/ctrlp.vim'
-let g:ctrlp_map = "<C-p>"
-let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_max_files=0
-let g:ctrlp_user_command =
-    \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+" Plug 'kien/ctrlp.vim'
+" let g:ctrlp_map = "<C-p>"
+" let g:ctrlp_cmd = 'CtrlPLastMode'
+" let g:ctrlp_max_files=0
+" let g:ctrlp_user_command =
+"     \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      " \ --ignore .git
+      " \ --ignore .svn
+      " \ --ignore .hg
+      " \ --ignore .DS_Store
+      " \ --ignore "**/*.pyc"
+      " \ --ignore .git5_specs
+      " \ --ignore review
+      " \ -g ""'
 
-Plugin 'fholgado/minibufexpl.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
+let g:fzf_layout = { 'down': '40%' }
+nnoremap <silent> <C-p> :Files<CR>
+
+Plug 'fholgado/minibufexpl.vim'
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
-Plugin 'briancollins/vim-jst'
+Plug 'briancollins/vim-jst'
 
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-" Plugin 'marijnh/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+" Plug 'marijnh/tern_for_vim'
 " let g:tern_map_keys=1
 " let g:tern_show_argument_hints='on_hold'
 " let g:tern#command=['tern', '--verbose']
-Plugin 'elzr/vim-json'
-Plugin 'digitaltoad/vim-jade'
+Plug 'elzr/vim-json'
+Plug 'digitaltoad/vim-jade'
 
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 
@@ -120,43 +134,43 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-Plugin 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin'
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'spf13/vim-colors'
+Plug 'altercation/vim-colors-solarized'
+Plug 'spf13/vim-colors'
 
-Plugin 'honza/dockerfile.vim'
+Plug 'honza/dockerfile.vim'
 
-Plugin 'jnwhiteh/vim-golang'
+Plug 'jnwhiteh/vim-golang'
 
-" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'bling/vim-airline'
+" Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
-Plugin 'rust-lang/rust.vim'
-Plugin 'phildawes/racer'
+Plug 'rust-lang/rust.vim'
+Plug 'phildawes/racer', { 'for': 'rust' }
 set hidden
 let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
 let g:racer_cmd = expand("~/.vim/bundle/racer/target/release/racer")
 let $RUST_SRC_PATH = expand("~/Projects/rustc/src")
 
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 let g:gist_clip_command = 'pbcopy'
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
 
-Plugin 'cespare/vim-toml'
-Plugin 'vim-scripts/brainfuck-syntax'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'parkr/vim-jekyll'
-Plugin 'tpope/vim-liquid'
+Plug 'cespare/vim-toml'
+Plug 'vim-scripts/brainfuck-syntax'
+Plug 'leafgarland/typescript-vim'
+Plug 'derekwyatt/vim-scala'
+Plug 'parkr/vim-jekyll'
+Plug 'tpope/vim-liquid'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 syntax enable
@@ -221,3 +235,7 @@ autocmd BufNewFile *.aidl setf java
 
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
+
+if filereadable(glob("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
