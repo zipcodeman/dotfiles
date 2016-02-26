@@ -20,6 +20,7 @@ au BufRead,BufNewFile *.j2 set filetype=jinja
 
 Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers=['jsxhint']
+let g:syntastic_mode_map = { 'passive_filetypes': ['go'] }
 
 " Plug 'klen/python-mode'
 " let g:pymode_lint_write = 1
@@ -100,34 +101,34 @@ Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-jade'
 
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ neocomplete#start_manual_complete()
-  function! s:check_back_space() "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-  endfunction"}}}
-
-" if patter matches, local omnifunc will be called
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
+" " Use neocomplete.
+" let g:neocomplete#enable_at_startup = 1
+" 
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 1
+" 
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+    " let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" 
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+        " \ <SID>check_back_space() ? "\<TAB>" :
+        " \ neocomplete#start_manual_complete()
+  " function! s:check_back_space() "{{{
+    " let col = col('.') - 1
+    " return !col || getline('.')[col - 1]  =~ '\s'
+  " endfunction"}}}
+" 
+" " if patter matches, local omnifunc will be called
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+    " let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
 
 " For snippet_complete marker.
 if has('conceal')
@@ -146,6 +147,7 @@ Plug 'jnwhiteh/vim-golang'
 " Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
@@ -169,6 +171,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'parkr/vim-jekyll'
 Plug 'tpope/vim-liquid'
+
+Plug 'mhinz/vim-signify'
+let g:signify_vcs_list = ['git']
 
 call plug#end()
 filetype plugin indent on
@@ -235,7 +240,12 @@ autocmd BufNewFile *.aidl setf java
 
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
+autocmd FileType go match ExtraWhitespace /\s\+$/
+autocmd FileType go set tabstop=2
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+function! s:Highlight_Matching_Pair()
+endfunction
