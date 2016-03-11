@@ -1,0 +1,7 @@
+# vim: ft=gitconfig
+
+[user]
+  name = Zach Bush
+  email = zach@zmbush.com
+[push]
+  default = simple
