@@ -90,6 +90,8 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
+Plug 'gabrielelana/vim-markdown'
+
 Plug 'briancollins/vim-jst'
 
 Plug 'pangloss/vim-javascript'
@@ -156,6 +158,8 @@ Plug 'phildawes/racer', { 'for': 'rust' }
 set hidden
 let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
+let g:rust_conceal_mod_path = 0
+let g:rustfmt_autosave = 1
 let g:racer_cmd = expand("~/.vim/bundle/racer/target/release/racer")
 let $RUST_SRC_PATH = expand("~/Projects/rustc/src")
 
@@ -174,6 +178,14 @@ Plug 'tpope/vim-liquid'
 
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git']
+
+Plug 'vim-scripts/vim-auto-save'
+
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-wordy'
+
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/local_vimrc'
 
 call plug#end()
 filetype plugin indent on
