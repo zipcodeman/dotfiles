@@ -113,7 +113,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-
 export EDITOR=/usr/bin/vim
 
 alias rm='rm -i'
@@ -126,11 +125,6 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/bin/
-PATH=$PATH:$HOME/bin/rust/bin/
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib/
-
-alias rustup="rustup --channel=nightly --prefix=~/bin/rust/ --disable-sudo"
 
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
 start_megaprompt() {
@@ -154,5 +148,17 @@ start_rs_megaprompt() {
 }
 
 start_rs_megaprompt
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
+
+if [ ! -d $HOME/.homesick/repos/homeshick ]; then
+  echo "Setting up Homeshick. Please Wait."
+  git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
+fi
+
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
 
 fi
