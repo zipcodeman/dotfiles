@@ -69,15 +69,19 @@ if [[ -n "$PS1" ]]; then
   source "$HOME/.homesick/repos/homeshick/homeshick.sh"
   source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
+  RUSTUP_LOCATION=~/bin/rustup
+
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
   [ -f ~/.bashrc.local ] && source ~/.bashrc.local
 
+  PATH=$HOME/bin:$PATH
+
   clear
 
-  if [ ! -f ~/rustup.sh ]; then
-    wget https://static.rust-lang.org/rustup.sh
-    chmod +x rustup.sh
-    big_echo "FILE UPDATED: CHECK rustup.sh"
+  if [ ! -f "$RUSTUP_LOCATION" ]; then
+    wget https://static.rust-lang.org/rustup.sh -O "$RUSTUP_LOCATION"
+    chmod +x "$RUSTUP_LOCATION"
+    big_echo "FILE UPDATED: CHECK '$RUSTUP_LOCATION'"
   fi
 
   if [ "$use_local_rustup" == "yes" ]; then
@@ -85,9 +89,9 @@ if [[ -n "$PS1" ]]; then
     PATH=$PATH:$HOME/.cargo/bin
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib
 
-    alias rustup="~/rustup.sh --channel=nightly --prefix=~/bin/rust --disable-sudo"
+    alias rustup="'$RUSTUP_LOCATION' --channel=nightly --prefix=~/bin/rust --disable-sudo"
   else
-    alias rustup="~/rustup.sh --channel=nightly"
+    alias rustup="'$RUSTUP_LOCATION' --channel=nightly"
   fi
 
   echo "Check homeshick"
