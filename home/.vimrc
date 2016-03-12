@@ -5,10 +5,8 @@ set nocp
 filetype off
 
 " Bundles
-set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 
-Plug 'gmarik/vundle'
 Plug 'vim-scripts/vim-coffee-script'
 
 Plug 'Markdown'
