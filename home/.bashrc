@@ -135,6 +135,14 @@ start_rs_megaprompt() {
   fi
 }
 
+big_echo() {
+  echo "####$(echo $@ | sed 's/./#/g')####"
+  echo "##  $(echo $@ | sed 's/./ /g')  ##"
+  echo "##  $@  ##"
+  echo "##  $(echo $@ | sed 's/./ /g')  ##"
+  echo "####$(echo $@ | sed 's/./#/g')####"
+}
+
 start_rs_megaprompt
 
 if [ ! -d $HOME/.homesick/repos/homeshick ]; then
@@ -146,8 +154,26 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
 
 clear
+
+if [ ! -f ~/rustup.sh ]; then
+  wget https://static.rust-lang.org/rustup.sh
+  chmod +x rustup.sh
+  big_echo "FILE UPDATED: CHECK rustup.sh"
+fi
+
+if [ "$use_local_rustup" == "yes" ]; then
+  PATH=$PATH:$HOME/bin/rust/bin
+  PATH=$PATH:$HOME/.cargo/bin
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib
+
+  alias rustup="~/rustup.sh --channel=nightly --prefix=~/bin/rust --disable-sudo"
+else
+  alias rustup="~/rustup.sh --channel=nightly"
+fi
+
 echo "Check homeshick"
 homeshick refresh 2
 echo
@@ -162,7 +188,20 @@ echo -ne "\033[1;34m""Hello $USER, Welcome to bash\033[0m"
 echo
 #echo
 
-# Keep this last
-[ -f ~/.bashrc.local ] && source ~/.bashrc.local
+## KEEP THIS STUFF LAST
+function command_log () {
+  # Save the rv
+  local -i rv="$?"
+  # Get the last line local
+  last_line="${BASH_COMMAND}"
+  local logfile="$HOME/.shell_logs/${HOSTNAME}"
+  local current_ts="$(date '+%Y%m%d %H:%M:%S')"
+  if [ "$last_line" != '' ] && [ "$last_line" != "PS1=\$($HOME/zmbush/bin/megaprompt)" ]; then
+    echo "${current_ts} ${LOGNAME} Status[${rv}] SPID[${$}] PWD[${PWD}]" \
+      \'${last_line#        }\' >> "${logfile}"
+  fi
+}
+
+trap command_log DEBUG
 
 fi
