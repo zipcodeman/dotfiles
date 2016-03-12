@@ -104,6 +104,7 @@ esac
 export EDITOR=/usr/bin/vim
 
 alias rm='rm -i'
+alias ls='ls --color=always'
 
 # enable programmable completion features (you don't need to enable
 # this, if i's already enabled in /etc/bash.bashrc and /etc/profile
