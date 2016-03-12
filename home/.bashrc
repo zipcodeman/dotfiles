@@ -39,18 +39,6 @@ txtrst='\[\e[0m\]'    # Text Reset
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]]; then
 
-clear
-echo -ne "\033[0m"
-cal -3
-echo
-ddate;date +'%I:%M:%S.%N'
-echo
-echo -ne "\033[0;36m";uptime
-echo
-echo -ne "\033[1;34m""Hello $USER, Welcome to bash\033[0m"
-echo
-#echo
-
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -149,9 +137,6 @@ start_rs_megaprompt() {
 
 start_rs_megaprompt
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.bashrc.local ] && source ~/.bashrc.local
-
 if [ ! -d $HOME/.homesick/repos/homeshick ]; then
   echo "Setting up Homeshick. Please Wait."
   git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
@@ -160,5 +145,24 @@ fi
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+clear
+echo "Check homeshick"
+homeshick refresh 2
+echo
+echo -ne "\033[0m"
+cal -3
+echo
+ddate;date +'%I:%M:%S.%N'
+echo
+echo -ne "\033[0;36m";uptime
+echo
+echo -ne "\033[1;34m""Hello $USER, Welcome to bash\033[0m"
+echo
+#echo
+
+# Keep this last
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
 
 fi
