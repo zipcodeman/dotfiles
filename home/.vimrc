@@ -47,19 +47,19 @@ let g:TagHighlightSettings['CtagsExecutable'] = expand('~/Projects/ctags-rs/targ
 
 nmap <F8> :TagbarToggle<CR>
 
- let g:tagbar_type_rust = {
-     \ 'ctagstype' : 'rust',
-     \ 'kinds' : [
-         \'T:types,type definitions',
-         \'f:functions,function definitions',
-         \'g:enum,enumeration names',
-         \'s:structure names',
-         \'m:modules,module names',
-         \'c:consts,static constants',
-         \'t:traits,traits',
-         \'i:impls,trait implementations',
-     \]
-     \}
+let g:tagbar_type_rust = {
+      \ 'ctagstype' : 'rust',
+      \ 'kinds' : [
+      \'T:types,type definitions',
+      \'f:functions,function definitions',
+      \'g:enum,enumeration names',
+      \'s:structure names',
+      \'m:modules,module names',
+      \'c:consts,static constants',
+      \'t:traits,traits',
+      \'i:impls,trait implementations',
+      \]
+      \}
 
 " Plug 'kien/ctrlp.vim'
 " let g:ctrlp_map = "<C-p>"
@@ -68,14 +68,14 @@ nmap <F8> :TagbarToggle<CR>
 " let g:ctrlp_user_command =
 "     \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 " let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      " \ --ignore .git
-      " \ --ignore .svn
-      " \ --ignore .hg
-      " \ --ignore .DS_Store
-      " \ --ignore "**/*.pyc"
-      " \ --ignore .git5_specs
-      " \ --ignore review
-      " \ -g ""'
+" \ --ignore .git
+" \ --ignore .svn
+" \ --ignore .hg
+" \ --ignore .DS_Store
+" \ --ignore "**/*.pyc"
+" \ --ignore .git5_specs
+" \ --ignore review
+" \ -g ""'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
@@ -118,21 +118,21 @@ Plug 'digitaltoad/vim-jade'
 " 
 " " Define keyword.
 " if !exists('g:neocomplete#keyword_patterns')
-    " let g:neocomplete#keyword_patterns = {}
+" let g:neocomplete#keyword_patterns = {}
 " endif
 " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 " 
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-        " \ <SID>check_back_space() ? "\<TAB>" :
-        " \ neocomplete#start_manual_complete()
-  " function! s:check_back_space() "{{{
-    " let col = col('.') - 1
-    " return !col || getline('.')[col - 1]  =~ '\s'
-  " endfunction"}}}
+" \ <SID>check_back_space() ? "\<TAB>" :
+" \ neocomplete#start_manual_complete()
+" function! s:check_back_space() "{{{
+" let col = col('.') - 1
+" return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
 " 
 " " if patter matches, local omnifunc will be called
 " if !exists('g:neocomplete#sources#omni#input_patterns')
-    " let g:neocomplete#sources#omni#input_patterns = {}
+" let g:neocomplete#sources#omni#input_patterns = {}
 " endif
 " let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
 
@@ -185,6 +185,7 @@ let g:signify_vcs_list = ['git']
 
 Plug 'vim-scripts/vim-auto-save'
 
+Plug 'Chiel92/vim-autoformat'
 Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-wordy'
 
