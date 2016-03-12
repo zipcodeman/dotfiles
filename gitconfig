@@ -3,5 +3,14 @@
 [user]
   name = Zach Bush
   email = zach@zmbush.com
+[alias]
+  amend = commit --amend
+  sed = !git ls-files | xargs sed -i -e
 [push]
   default = simple
+[multi]
+  exporttags = default
+[diff]
+  tool = vimdiff
+[merge]
+  tool = vimdiff
