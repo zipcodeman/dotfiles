@@ -103,20 +103,21 @@ if [[ -n "$PS1" ]]; then
   echo -ne "\033[1;34m""Hello $USER, Welcome to bash\033[0m"
   echo
   #echo
-
-  ## KEEP THIS STUFF LAST
-  function command_log () {
-    # Save the rv
-    local -i rv="$?"
-    # Get the last line local
-    last_line="${BASH_COMMAND}"
-    local logfile="$HOME/.shell_logs/${HOSTNAME}"
-    local current_ts="$(date '+%Y%m%d %H:%M:%S')"
-    if [ "$last_line" != '' ] && [ "$last_line" != "PS1=\$($HOME/zmbush/bin/megaprompt)" ]; then
-      echo "${current_ts} ${LOGNAME} Status[${rv}] SPID[${$}] PWD[${PWD}]" \
-        \'${last_line#        }\' >> "${logfile}"
-    fi
-  }
-
-  trap command_log DEBUG
 fi
+
+## KEEP THIS STUFF LAST
+function command_log () {
+  # Save the rv
+  local -i rv="$?"
+  # Get the last line local
+  last_line="${BASH_COMMAND}"
+  mkdir -p $HOME/.shell_logs
+  local logfile="$HOME/.shell_logs/${HOSTNAME}"
+  local current_ts="$(date '+%Y%m%d %H:%M:%S')"
+  if [ "$last_line" != '' ] && [ "$last_line" != "PS1=\$($HOME/zmbush/bin/megaprompt)" ]; then
+    echo "${current_ts} ${LOGNAME} Status[${rv}] SPID[${$}] PWD[${PWD}]" \
+      \'${last_line#        }\' >> "${logfile}"
+  fi
+}
+
+trap command_log DEBUG
