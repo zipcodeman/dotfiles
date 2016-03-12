@@ -12,70 +12,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-
-Plug 'vim-scripts/vim-coffee-script'
-
-Plug 'Markdown'
-Plug 'atourino/jinja.vim'
-au BufRead,BufNewFile *.j2 set filetype=jinja
-
-" Plug 'scrooloose/nerdtree'
-" map <F2> :NERDTreeToggle<CR>
-
 Plug 'scrooloose/syntastic'
-let g:syntastic_javascript_checkers=['jsxhint']
 let g:syntastic_mode_map = { 'passive_filetypes': ['go'] }
-
-" Plug 'klen/python-mode'
-" let g:pymode_lint_write = 1
-" let g:pymode_run_key = 'R'
-
-" Plug 'ervandew/supertab'
-" au FileType python set omnifunc=pythoncomplete#Complete
-" let g:SuperTabDefaultCompletionType = "context"
-
-Plug 'abudden/taghighlight-automirror'
-Plug 'majutsushi/tagbar'
-if filereadable("~/.vim/tagbar-coffeescript-config")
-  so ~/.vim/tagbar-coffeescript-config
-end
-if ! exists('g:TagHighlightSettings')
-  let g:TagHighlightSettings = {}
-endif
-let g:TagHighlightSettings['TagFileName'] = 'tags'
-let g:TagHighlightSettings['CtagsExecutable'] = expand('~/Projects/ctags-rs/target/debug/ctags-rs')
-
-nmap <F8> :TagbarToggle<CR>
-
-let g:tagbar_type_rust = {
-      \ 'ctagstype' : 'rust',
-      \ 'kinds' : [
-      \'T:types,type definitions',
-      \'f:functions,function definitions',
-      \'g:enum,enumeration names',
-      \'s:structure names',
-      \'m:modules,module names',
-      \'c:consts,static constants',
-      \'t:traits,traits',
-      \'i:impls,trait implementations',
-      \]
-      \}
-
-" Plug 'kien/ctrlp.vim'
-" let g:ctrlp_map = "<C-p>"
-" let g:ctrlp_cmd = 'CtrlPLastMode'
-" let g:ctrlp_max_files=0
-" let g:ctrlp_user_command =
-"     \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
-" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-" \ --ignore .git
-" \ --ignore .svn
-" \ --ignore .hg
-" \ --ignore .DS_Store
-" \ --ignore "**/*.pyc"
-" \ --ignore .git5_specs
-" \ --ignore review
-" \ -g ""'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
@@ -100,64 +38,25 @@ Plug 'briancollins/vim-jst'
 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-" Plug 'marijnh/tern_for_vim'
-" let g:tern_map_keys=1
-" let g:tern_show_argument_hints='on_hold'
-" let g:tern#command=['tern', '--verbose']
 Plug 'elzr/vim-json'
-Plug 'digitaltoad/vim-jade'
-
-" Plug 'Shougo/neocomplete.vim'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-" " Use neocomplete.
-" let g:neocomplete#enable_at_startup = 1
-" 
-" " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 1
-" 
-" " Define keyword.
-" if !exists('g:neocomplete#keyword_patterns')
-" let g:neocomplete#keyword_patterns = {}
-" endif
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" 
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-" \ <SID>check_back_space() ? "\<TAB>" :
-" \ neocomplete#start_manual_complete()
-" function! s:check_back_space() "{{{
-" let col = col('.') - 1
-" return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-" 
-" " if patter matches, local omnifunc will be called
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-" let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
 
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-Plug 'dart-lang/dart-vim-plugin'
-
 Plug 'altercation/vim-colors-solarized'
 Plug 'spf13/vim-colors'
 
-Plug 'honza/dockerfile.vim'
+Plug 'jnwhiteh/vim-golang', { 'for': 'go' }
 
-Plug 'jnwhiteh/vim-golang'
-
-" Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'phildawes/racer', { 'for': 'rust' }
 set hidden
 let g:rust_conceal = 1
@@ -174,20 +73,17 @@ let g:gist_show_privates = 1
 let g:gist_post_private = 1
 
 Plug 'cespare/vim-toml'
-Plug 'vim-scripts/brainfuck-syntax'
-Plug 'leafgarland/typescript-vim'
-Plug 'derekwyatt/vim-scala'
 Plug 'parkr/vim-jekyll'
-Plug 'tpope/vim-liquid'
 
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git']
 
-Plug 'vim-scripts/vim-auto-save'
+" For writing
+Plug 'vim-scripts/vim-auto-save', { 'for': 'markdown' }
+Plug 'reedes/vim-pencil', { 'for': 'markdown' }
+Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 
 Plug 'Chiel92/vim-autoformat'
-Plug 'reedes/vim-pencil'
-Plug 'reedes/vim-wordy'
 
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
