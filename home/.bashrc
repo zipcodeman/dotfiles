@@ -95,7 +95,7 @@ if [[ -n "$PS1" ]]; then
   fi
 
   echo "Check homeshick"
-  homeshick refresh 2
+  homeshick refresh 1
   echo
   echo -ne "\033[0m"
   cal -3
