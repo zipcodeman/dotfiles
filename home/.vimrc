@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 let g:syntastic_mode_map = { 'passive_filetypes': ['go'] }
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '40%' }
 nnoremap <silent> <C-p> :Files<CR>

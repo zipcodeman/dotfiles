@@ -1,5 +1,26 @@
 # vim: ft=gitconfig
 
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+  showbranch = auto
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[branch]
+  autosetuprebase = always
 [user]
   name = Zach Bush
   email = zach@zmbush.com
@@ -7,7 +28,7 @@
   amend = commit --amend
   sed = !git ls-files | xargs sed -i -e
 [push]
-  default = simple
+  default = upstream
 [multi]
   exporttags = default
 [diff]
