@@ -27,6 +27,7 @@
 [alias]
   amend = commit --amend
   sed = !git ls-files | xargs sed -i -e
+  lg = log --oneline
 [push]
   default = upstream
 [multi]
