@@ -17,6 +17,7 @@ if [[ -n "$PS1" ]]; then
   fi
 
   export EDITOR=/usr/bin/vim
+  export LC_ALL=en_US.UTF-8
 
   alias rm='rm -i'
   alias ls='ls --color=always'
