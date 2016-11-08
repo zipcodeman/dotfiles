@@ -59,7 +59,7 @@ let g:airline#extensions#whitespace#enabled = 0
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
 
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim'
 Plug 'phildawes/racer', { 'for': 'rust' }
 set hidden
 let g:rust_conceal = 1
@@ -128,6 +128,7 @@ autocmd FileType java set makeprg=ant\ -emacs
 set foldmethod=syntax
 autocmd FileType python set foldmethod=indent
 au BufNewFile,BufRead *.ejs set filetype=html
+" au BufNewFile,BufRead *.rs set filetype=rust
 
 " Open/Close folds with Space
 nnoremap <space> za

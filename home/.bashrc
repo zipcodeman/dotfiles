@@ -61,7 +61,6 @@ if [[ -n "$PS1" ]]; then
     echo "####$(echo $@ | sed 's/./#/g')####"
   }
 
-  start_rs_megaprompt
 
   if [ ! -d $HOME/.homesick/repos/homeshick ]; then
     echo "Setting up Homeshick. Please Wait."
@@ -80,20 +79,24 @@ if [[ -n "$PS1" ]]; then
 
   clear
 
-  if [ ! -f "$RUSTUP_LOCATION" ]; then
-    wget https://static.rust-lang.org/rustup.sh -O "$RUSTUP_LOCATION"
-    chmod +x "$RUSTUP_LOCATION"
-    big_echo "FILE UPDATED: CHECK '$RUSTUP_LOCATION'"
-  fi
-
-  PATH=$PATH:$HOME/.cargo/bin
-  if [ "$use_local_rustup" == "yes" ]; then
-    PATH=$PATH:$HOME/bin/rust/bin
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib
-
-    alias rustup="'$RUSTUP_LOCATION' --channel=nightly --prefix=~/bin/rust --disable-sudo"
+  if [ "$ignore_standard_rustup" == "yes" ]; then
+    echo "Not installing rustup"
   else
-    alias rustup="'$RUSTUP_LOCATION' --channel=nightly"
+    if [ ! -f "$RUSTUP_LOCATION" ]; then
+      wget https://static.rust-lang.org/rustup.sh -O "$RUSTUP_LOCATION"
+      chmod +x "$RUSTUP_LOCATION"
+      big_echo "FILE UPDATED: CHECK '$RUSTUP_LOCATION'"
+    fi
+
+    PATH=$PATH:$HOME/bin/rust/bin
+    if [ "$use_local_rustup" == "yes" ]; then
+      PATH=$PATH:$HOME/.cargo/bin
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib
+
+      alias rustup="'$RUSTUP_LOCATION' --channel=nightly --prefix=~/bin/rust --disable-sudo"
+    else
+      alias rustup="'$RUSTUP_LOCATION' --channel=nightly"
+    fi
   fi
 
   echo "Check homeshick"
@@ -109,7 +112,10 @@ if [[ -n "$PS1" ]]; then
   echo -ne "\033[1;34m""Hello $USER, Welcome to bash\033[0m"
   echo
   #echo
+
+  start_rs_megaprompt
 fi
+
 
 ## KEEP THIS STUFF LAST
 function command_log () {
