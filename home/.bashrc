@@ -86,9 +86,9 @@ if [[ -n "$PS1" ]]; then
     big_echo "FILE UPDATED: CHECK '$RUSTUP_LOCATION'"
   fi
 
+  PATH=$PATH:$HOME/.cargo/bin
   if [ "$use_local_rustup" == "yes" ]; then
     PATH=$PATH:$HOME/bin/rust/bin
-    PATH=$PATH:$HOME/.cargo/bin
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib
 
     alias rustup="'$RUSTUP_LOCATION' --channel=nightly --prefix=~/bin/rust --disable-sudo"
