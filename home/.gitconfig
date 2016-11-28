@@ -24,7 +24,7 @@
 [user]
   name = Zach Bush
   email = zach@zmbush.com
-	signingkey = 70E57F73
+  signingkey = 70E57F73
 [alias]
   amend = commit --amend
   sed = !git ls-files | xargs sed -i -e
