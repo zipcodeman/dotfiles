@@ -22,6 +22,7 @@ if [[ -n "$PS1" ]]; then
   alias rm='rm -i'
   alias ls='ls --color=always'
   alias update-vim='vim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qall'
+  alias tmux='tmux -2'
 
   # enable programmable completion features (you don't need to enable
   # this, if i's already enabled in /etc/bash.bashrc and /etc/profile

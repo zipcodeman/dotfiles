@@ -94,6 +94,8 @@ Plug 'LucHermitte/local_vimrc'
 Plug 'jaxbot/semantic-highlight.vim'
 let g:semanticTermColors = [29,202,11,13,14,9,10,34,196,231,197,214,27,253]
 
+Plug 'derekwyatt/vim-scala'
+
 call plug#end()
 filetype plugin indent on
 
