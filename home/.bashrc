@@ -77,6 +77,8 @@ if [[ -n "$PS1" ]]; then
   [ -f ~/.bashrc.local ] && source ~/.bashrc.local
 
   PATH=$HOME/bin:$PATH
+  PATH=$HOME/.local/bin:$PATH
+  PATH=$HOME/Projects/woff2/:$PATH
 
   clear
 

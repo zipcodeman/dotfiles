@@ -29,6 +29,8 @@
   amend = commit --amend
   sed = !git ls-files | xargs sed -i -e
   lg = log --oneline
+[pull]
+  rebase = true
 [push]
   default = upstream
   followTags = true
