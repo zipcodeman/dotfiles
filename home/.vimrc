@@ -66,6 +66,7 @@ let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
 let g:rust_conceal_mod_path = 0
 let g:rustfmt_autosave = 1
+let g:rustfmt_command = "rustup run nightly rustfmt"
 let g:racer_cmd = expand("~/.vim/bundle/racer/target/release/racer")
 let $RUST_SRC_PATH = expand("~/Projects/rustc/src")
 
