@@ -167,9 +167,13 @@ match ExtraWhitespace /\s\+$\|\t/
 autocmd FileType go match ExtraWhitespace /\s\+$/
 autocmd FileType go set tabstop=2
 
+call lh#local_vimrc#munge('whitelist', $HOME.'/Projects')
+
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 
 function! s:Highlight_Matching_Pair()
 endfunction
+
+autocmd BufNewFile *.rs 0r ~/.vim-license-headers/apache-mit.txt.slash
