@@ -12,9 +12,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/syntastic'
-let g:syntastic_mode_map = { 'passive_filetypes': ['go'] }
-let g:syntastic_python_python_exec = 'python3'
+" Plug 'scrooloose/syntastic'
+" let g:syntastic_mode_map = { 'passive_filetypes': ['go'] }
+" let g:syntastic_python_python_exec = 'python3'
+" let g:syntastic_javascript_checkers=['eslint']
+" let g:syntastic_javascript_eslint_exe = 'yarn run eslint'
+
+Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
