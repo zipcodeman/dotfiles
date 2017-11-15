@@ -5,13 +5,25 @@ set nocp
 filetype off
 
 " Bundles
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+if has('nvim')
+  if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  endif
+else
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  endif
 endif
 
-call plug#begin('~/.vim/plugged')
+if has('nvim')
+  call plug#begin('~/.local/share/nvim/plugged')
+else
+  call plug#begin('~/.vim/plugged')
+endif
 " Plug 'scrooloose/syntastic'
 " let g:syntastic_mode_map = { 'passive_filetypes': ['go'] }
 " let g:syntastic_python_python_exec = 'python3'
