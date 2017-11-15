@@ -29,6 +29,11 @@ endif
 " let g:syntastic_python_python_exec = 'python3'
 " let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_eslint_exe = 'yarn run eslint'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+endif
 
 Plug 'w0rp/ale'
 
@@ -73,22 +78,32 @@ Plug 'spf13/vim-colors'
 
 Plug 'jnwhiteh/vim-golang', { 'for': 'go' }
 
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set laststatus=2
+let g:airline_solarized_bg='dark'
+let g:airline_theme='solarized'
 
-Plug 'rust-lang/rust.vim'
-Plug 'phildawes/racer', { 'for': 'rust' }
-set hidden
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
 let g:rust_conceal_mod_path = 0
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = "rustup run nightly rustfmt"
-let g:racer_cmd = expand("~/.vim/bundle/racer/target/release/racer")
-let $RUST_SRC_PATH = expand("~/Projects/rustc/src")
+if has('nvim')
+  Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+
+  let g:deoplete#sources#rust#racer_binary=expand('~/.cargo/bin/racer')
+  let g:deoplete#sources#rust#rust_source_path=expand('~/Projects/rust/src')
+else
+  Plug 'phildawes/racer', { 'for': 'rust' }
+  set hidden
+  let g:racer_cmd = expand("~/.cargo/bin/racer")
+  let $RUST_SRC_PATH = expand("~/Projects/rust/src")
+endif
 
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
@@ -113,9 +128,6 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
 
-Plug 'jaxbot/semantic-highlight.vim'
-let g:semanticTermColors = [29,202,11,13,14,9,10,34,196,231,197,214,27,253]
-
 Plug 'derekwyatt/vim-scala'
 
 call plug#end()
@@ -123,7 +135,7 @@ filetype plugin indent on
 
 syntax enable
 set background=dark
-colorscheme ir_black
+colorscheme solarized
 hi clear Conceal
 
 set modelines=1

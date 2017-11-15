@@ -20,6 +20,7 @@ if [[ -n "$PS1" ]]; then
   export LC_ALL=en_US.UTF-8
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
+  alias vim='nvim'
   alias rm='rm -i'
   alias ls='ls --color=always'
   alias update-vim='vim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qall'
@@ -71,6 +72,16 @@ if [[ -n "$PS1" ]]; then
 
   source "$HOME/.homesick/repos/homeshick/homeshick.sh"
   source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
+  if [ ! -d $HOME/.solarized/dircolors-solarized ]; then
+    echo "Setting up dircolors solarized. Please wait."
+    (
+      mkdir ~/.solarized
+      cd ~/.solarized
+      git clone git://github.com/seebi/dircolors-solarized.git
+    )
+  fi
+  eval `dircolors ~/.solarized/dircolors-solarized/dircolors.ansi-dark`
 
   RUSTUP_LOCATION=~/bin/rustup
 
