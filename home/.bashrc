@@ -18,6 +18,7 @@ if [[ -n "$PS1" ]]; then
 
   export EDITOR=/usr/bin/vim
   export LC_ALL=en_US.UTF-8
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
   alias rm='rm -i'
   alias ls='ls --color=always'
@@ -104,6 +105,7 @@ if [[ -n "$PS1" ]]; then
 #    fi
 #  fi
 
+
   echo "Check homeshick"
   homeshick refresh 1
   echo
@@ -138,3 +140,18 @@ function command_log () {
 }
 
 trap command_log DEBUG
+
+function settitle() {
+  case "$BASH_COMMAND" in
+    *PS1=*)
+      # Usually happens on a PROMPT_COMMAND
+      # Reset title
+      echo -ne "\033]0;Terminal\007"
+      ;;
+    *)
+      # Set title to match command
+      echo -ne "\033]0;${BASH_COMMAND}\007"
+  esac
+}
+
+trap 'settitle' DEBUG

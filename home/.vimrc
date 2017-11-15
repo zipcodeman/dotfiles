@@ -23,7 +23,10 @@ Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '40%' }
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-y> :Find<CR>
+
 
 Plug 'fholgado/minibufexpl.vim'
 let g:miniBufExplMapWindowNavVim = 1

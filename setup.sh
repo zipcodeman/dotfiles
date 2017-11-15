@@ -21,6 +21,10 @@ cat <<'EOF' > $tmpfile
 
 # Main castles
 zmbush/dotfiles
+zmbush/i3-castle
+
+# Private castles
+zmbush/mail-dotfiles
 EOF
 
 ${VISUAL:-vi} $tmpfile
@@ -36,6 +40,7 @@ castles=()
 
 while read line; do
   castle=$(echo "$line" | sed '/^[ \t]*#/d;s/^[ \t]*\(.*\)[ \t]*$/\1/')
+  castle=$(echo "$castle" | sed 's/^zmbush/git@github.com:zmbush/')
   if [[ -n $castle ]]; then
     castles+=("$castle")
   fi
