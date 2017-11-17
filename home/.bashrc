@@ -16,15 +16,9 @@ if [[ -n "$PS1" ]]; then
       debian_chroot=$(cat /etc/debian_chroot)
   fi
 
-  export EDITOR=/usr/bin/vim
-  export LC_ALL=en_US.UTF-8
-  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-
-  alias vim='nvim'
-  alias rm='rm -i'
-  alias ls='ls --color=always'
-  alias update-vim='vim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qall'
-  alias tmux='tmux -2'
+  if [ -f ~/.config/zsh/zsh-bash-common.sh ]; then
+    source ~/.config/zsh/zsh-bash-common.sh
+  fi
 
   # enable programmable completion features (you don't need to enable
   # this, if i's already enabled in /etc/bash.bashrc and /etc/profile
@@ -33,9 +27,6 @@ if [[ -n "$PS1" ]]; then
       . /etc/bash_completion
   fi
 
-  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-  export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
   start_megaprompt() {
     export PROMPT_COMMAND='PS1=$($HOME/bin/binaries/megaprompt/pyprompt)'
   }
@@ -43,7 +34,7 @@ if [[ -n "$PS1" ]]; then
   start_rs_megaprompt() {
     live_compile=$1
     mp="$HOME/bin/binaries/megaprompt"
-    cmd="PS1=\$($HOME/bin/megaprompt)"
+    cmd="PS1=\$($HOME/.cargo/bin/megaprompt --bash)"
     if [ -z "$live_compile" ]; then
       export PROMPT_COMMAND=$cmd
     else
@@ -56,45 +47,11 @@ if [[ -n "$PS1" ]]; then
     fi
   }
 
-  big_echo() {
-    echo "####$(echo $@ | sed 's/./#/g')####"
-    echo "##  $(echo $@ | sed 's/./ /g')  ##"
-    echo "##  $@  ##"
-    echo "##  $(echo $@ | sed 's/./ /g')  ##"
-    echo "####$(echo $@ | sed 's/./#/g')####"
-  }
-
-
-  if [ ! -d $HOME/.homesick/repos/homeshick ]; then
-    echo "Setting up Homeshick. Please Wait."
-    git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
-  fi
-
-  source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-  source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-
-  if [ ! -d $HOME/.solarized/dircolors-solarized ]; then
-    echo "Setting up dircolors solarized. Please wait."
-    (
-      mkdir ~/.solarized
-      cd ~/.solarized
-      git clone git://github.com/seebi/dircolors-solarized.git
-    )
-  fi
-  eval `dircolors ~/.solarized/dircolors-solarized/dircolors.ansi-dark`
-
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
   [ -f ~/.bashrc.local ] && source ~/.bashrc.local
 
-  PATH=$HOME/bin:$PATH
-  PATH=$HOME/.local/bin:$PATH
-  PATH=$HOME/Projects/woff2/:$PATH
-
   clear
-
-  source $HOME/.cargo/env
-
 
   echo "Check homeshick"
   homeshick refresh 1
