@@ -209,3 +209,7 @@ function! s:Highlight_Matching_Pair()
 endfunction
 
 autocmd BufNewFile *.rs 0r ~/.vim-license-headers/apache-mit.txt.slash
+
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif

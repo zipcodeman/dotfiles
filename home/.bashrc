@@ -83,7 +83,6 @@ if [[ -n "$PS1" ]]; then
   fi
   eval `dircolors ~/.solarized/dircolors-solarized/dircolors.ansi-dark`
 
-  RUSTUP_LOCATION=~/bin/rustup
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
   [ -f ~/.bashrc.local ] && source ~/.bashrc.local
@@ -95,26 +94,6 @@ if [[ -n "$PS1" ]]; then
   clear
 
   source $HOME/.cargo/env
-
-#  if [ "$ignore_standard_rustup" == "yes" ]; then
-#    echo "Not installing rustup"
-#  else
-#    if [ ! -f "$RUSTUP_LOCATION" ]; then
-#      wget https://static.rust-lang.org/rustup.sh -O "$RUSTUP_LOCATION"
-#      chmod +x "$RUSTUP_LOCATION"
-#      big_echo "FILE UPDATED: CHECK '$RUSTUP_LOCATION'"
-#    fi
-#
-#    PATH=$PATH:$HOME/bin/rust/bin
-#    if [ "$use_local_rustup" == "yes" ]; then
-#      PATH=$PATH:$HOME/.cargo/bin
-#      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/bin/rust/lib
-#
-#      alias rustup="'$RUSTUP_LOCATION' --channel=nightly --prefix=~/bin/rust --disable-sudo"
-#    else
-#      alias rustup="'$RUSTUP_LOCATION' --channel=nightly"
-#    fi
-#  fi
 
 
   echo "Check homeshick"
