@@ -7,6 +7,8 @@ plugins=(
   common-aliases
   cp
   git
+  yarn
+  taskwarrior
 )
 
 source ~/.config/zsh/zsh-bash-common.sh
