@@ -29,6 +29,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$HOME/bin:$PATH
 PATH=$HOME/.local/bin:$PATH
 PATH=$HOME/Projects/woff2/:$PATH
+PATH=$HOME/.yarn/bin:$PATH
 
 source $HOME/.cargo/env
 
