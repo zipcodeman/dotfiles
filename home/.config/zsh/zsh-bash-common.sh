@@ -1,4 +1,4 @@
-export EDITOR=/usr/bin/nvim
+export EDITOR=nvim
 export LC_ALL=en_US.UTF-8
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1

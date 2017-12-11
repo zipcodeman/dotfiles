@@ -36,6 +36,8 @@ if has('nvim')
 endif
 
 Plug 'w0rp/ale'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {'python': []}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
@@ -184,7 +186,7 @@ au FileType tex TTarget pdf
 " SyntaxHighlighting
 set ofu=syntaxcomplete
 
-autocmd FileType python nmap <F8> :let pyScratch=system('python '.expand('%'))<CR>:vne<CR>:put =pyScratch<CR> :set buftype=nofile<CR>
+" autocmd FileType python nmap <F8> :let pyScratch=system('python '.expand('%'))<CR>:vne<CR>:put =pyScratch<CR> :set buftype=nofile<CR>
 
 autocmd FileType gitcommit set tw=70
 if exists("&colorcolumn")
