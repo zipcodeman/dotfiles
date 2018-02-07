@@ -29,6 +29,10 @@
   amend = commit --amend
   sed = !git ls-files | xargs sed -i -e
   lg = log --oneline
+  push-review = !sh -c 'git push origin HEAD:refs/for/${1-master}' -
+  push-wip = !sh -c 'git push origin HEAD:refs/for/${1-master}%wip' -
+  push-ready = !sh -c 'git push origin HEAD:refs/for/${1-master}%ready' -
+
 [pull]
   rebase = true
 [push]
@@ -41,4 +45,4 @@
 [merge]
   tool = vimdiff
 [http]
-  cookiefile = /usr/local/google/home/zmbush/.gitcookies
+	cookiefile = /usr/local/google/home/zmbush/.gitcookies
