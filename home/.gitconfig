@@ -28,10 +28,10 @@
 [alias]
   amend = commit --amend
   sed = !git ls-files | xargs sed -i -e
-  lg = log --oneline
-  push-review = !sh -c 'git push origin HEAD:refs/for/${1-master}' -
-  push-wip = !sh -c 'git push origin HEAD:refs/for/${1-master}%wip' -
-  push-ready = !sh -c 'git push origin HEAD:refs/for/${1-master}%ready' -
+  lg = log --oneline origin/master..
+  push-review = !sh -c 'git push origin HEAD:refs/for/${1-master}${2-}' -
+  push-wip = !sh -c 'git push origin HEAD:refs/for/${1-master}%wip${2-}' -
+  push-ready = !sh -c 'git push origin HEAD:refs/for/${1-master}%ready${2-}' -
 
 [pull]
   rebase = true
