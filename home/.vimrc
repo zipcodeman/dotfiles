@@ -213,6 +213,9 @@ endfunction
 autocmd BufNewFile *.rs 0r ~/.vim-license-headers/apache-mit.txt.slash
 autocmd BufNewFile *.js 0r ~/.vim-license-headers/apache-mit.txt.slash
 autocmd BufNewFile *.jsx 0r ~/.vim-license-headers/apache-mit.txt.slash
+autocmd BufNewFile *.rb 0r ~/.vim-license-headers/apache-mit.txt.hash
+autocmd BufNewFile *.vim 0r  ~/.vim-license-headers/apache-mit.txt.quote
+autocmd BufNewFile *.tex 0r  ~/.vim-license-headers/apache-mit.txt.percent
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
