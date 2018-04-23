@@ -30,6 +30,7 @@ PATH=$HOME/bin:$PATH
 PATH=$HOME/.local/bin:$PATH
 PATH=$HOME/Projects/woff2/:$PATH
 PATH=$HOME/.yarn/bin:$PATH
+PATH=$HOME/Projects/fuchsia/.jiri_root/bin:$PATH
 
 source $HOME/.cargo/env
 
