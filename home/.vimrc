@@ -127,6 +127,8 @@ Plug 'reedes/vim-pencil', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 
 Plug 'Chiel92/vim-autoformat'
+let g:formatter_yapf_style = 'google'
+" au BufWrite * :Autoformat
 
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
