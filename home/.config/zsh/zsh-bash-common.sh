@@ -34,6 +34,10 @@ PATH=$HOME/Projects/fuchsia/.jiri_root/bin:$PATH
 
 source $HOME/.cargo/env
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 alias vim='nvim'
 alias rm='rm -i'
 alias ls='ls --color=always'
