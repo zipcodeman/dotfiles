@@ -44,7 +44,5 @@
   tool = vimdiff
 [merge]
   tool = vimdiff
-[http]
-	cookiefile = /usr/local/google/home/zmbush/.gitcookies
 [include]
   path = .gitconfig.local
