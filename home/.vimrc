@@ -5,25 +5,20 @@ set nocp
 filetype off
 
 " Bundles
+let plug_dir = "~/.vim/autoload/plug.vim"
+let plugged_dir = "~/.vim/plugged"
 if has('nvim')
-  if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall | source $MYVIMRC
-  endif
-else
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall | source $MYVIMRC
-  endif
+  let plug_dir = "~/.local/share/nvim/site/autoload/plug.vim"
+  let plugged_dir = "~/.local/share/nvim/plugged"
 endif
 
-if has('nvim')
-  call plug#begin('~/.local/share/nvim/plugged')
-else
-  call plug#begin('~/.vim/plugged')
+if empty(glob(plug_dir))
+  execute "silent !curl -fLo ".plug_dir." --create-dirs ".
+          \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
+
+call plug#begin(plugged_dir)
 " Plug 'scrooloose/syntastic'
 " let g:syntastic_mode_map = { 'passive_filetypes': ['go'] }
 " let g:syntastic_python_python_exec = 'python3'
@@ -46,7 +41,6 @@ let g:fzf_layout = { 'down': '40%' }
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-y> :Find<CR>
-
 
 Plug 'fholgado/minibufexpl.vim'
 let g:miniBufExplMapWindowNavVim = 1
@@ -95,7 +89,7 @@ let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
 let g:rust_conceal_mod_path = 0
 let g:rustfmt_autosave = 1
-let g:rustfmt_command = "rustup run nightly rustfmt"
+let g:rustfmt_command = "rustfmt"
 if has('nvim')
   Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 
@@ -140,7 +134,8 @@ filetype plugin indent on
 
 syntax enable
 set background=dark
-colorscheme solarized
+" Try to set solarized them, but fail silently
+silent! colorscheme solarized
 hi clear Conceal
 
 set modelines=1
@@ -204,7 +199,8 @@ match ExtraWhitespace /\s\+$\|\t/
 autocmd FileType go match ExtraWhitespace /\s\+$/
 autocmd FileType go set tabstop=2
 
-call lh#local_vimrc#munge('whitelist', $HOME.'/Projects')
+" Try to call local_vimrc, but fail silently
+silent! call lh#local_vimrc#munge('whitelist', $HOME.'/Projects')
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
