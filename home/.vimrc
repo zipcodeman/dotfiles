@@ -96,7 +96,7 @@ if has('nvim')
   let g:deoplete#sources#rust#racer_binary=expand('~/.cargo/bin/racer')
   let g:deoplete#sources#rust#rust_source_path=expand('~/Projects/rust/src')
 else
-  Plug 'phildawes/racer', { 'for': 'rust' }
+  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
   set hidden
   let g:racer_cmd = expand("~/.cargo/bin/racer")
   let $RUST_SRC_PATH = expand("~/Projects/rust/src")
@@ -208,6 +208,9 @@ endif
 
 function! s:Highlight_Matching_Pair()
 endfunction
+
+set formatoptions+=r
+set formatoptions+=o
 
 autocmd BufNewFile *.rs 0r ~/.vim-license-headers/apache-mit.txt.slash
 autocmd BufNewFile *.js 0r ~/.vim-license-headers/apache-mit.txt.slash
