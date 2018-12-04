@@ -80,9 +80,9 @@ let g:airline_solarized_bg='dark'
 let g:airline_theme='solarized'
 
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-let g:rust_conceal = 1
-let g:rust_conceal_pub = 1
-let g:rust_conceal_mod_path = 0
+" let g:rust_conceal = 1
+" let g:rust_conceal_pub = 1
+" let g:rust_conceal_mod_path = 0
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = "rustfmt"
 if has('nvim')
@@ -126,6 +126,8 @@ Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
 
 Plug 'derekwyatt/vim-scala'
+
+Plug 'https://fuchsia.googlesource.com/garnet/', { 'rtp': 'public/lib/fidl/tools/vim' }
 
 call plug#end()
 filetype plugin indent on
