@@ -24,11 +24,6 @@ call plug#begin(plugged_dir)
 " let g:syntastic_python_python_exec = 'python3'
 " let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_eslint_exe = 'yarn run eslint'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#enable_at_startup = 1
-  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-endif
 
 Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
@@ -91,15 +86,18 @@ let g:rust_conceal_mod_path = 0
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = "rustfmt"
 if has('nvim')
-  Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+  set hidden
+  let g:racer_cmd = expand("~/.cargo/bin/racer")
 
-  let g:deoplete#sources#rust#racer_binary=expand('~/.cargo/bin/racer')
-  let g:deoplete#sources#rust#rust_source_path=expand('~/Projects/rust/src')
+  let g:deoplete#enable_at_startup = 1
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 else
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
   set hidden
   let g:racer_cmd = expand("~/.cargo/bin/racer")
-  let $RUST_SRC_PATH = expand("~/Projects/rust/src")
+  " let $RUST_SRC_PATH = expand("~/Projects/rust/src")
 endif
 
 Plug 'mattn/webapi-vim'
