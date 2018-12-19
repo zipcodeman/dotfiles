@@ -79,12 +79,12 @@ set laststatus=2
 let g:airline_solarized_bg='dark'
 let g:airline_theme='solarized'
 
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim'
 " let g:rust_conceal = 1
 " let g:rust_conceal_pub = 1
 " let g:rust_conceal_mod_path = 0
 let g:rustfmt_autosave = 1
-let g:rustfmt_command = "rustfmt"
+let g:rustfmt_command = systemlist('rustc --print sysroot')[0]."/bin/rustfmt"
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
