@@ -127,6 +127,8 @@ Plug 'LucHermitte/local_vimrc'
 
 Plug 'derekwyatt/vim-scala'
 
+Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+
 Plug 'https://fuchsia.googlesource.com/garnet/', { 'rtp': 'public/lib/fidl/tools/vim' }
 
 call plug#end()
