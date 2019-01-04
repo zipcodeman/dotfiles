@@ -29,6 +29,7 @@ Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_cache_executable_check_failures = 1
 let g:ale_linters = {'python': []}
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
