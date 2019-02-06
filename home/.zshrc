@@ -26,3 +26,5 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+alias bigfont="printf '\\e]710;%s\\007' \"xft:Ubuntu Mono derivative Powerline:pixelsize=30:antialias=true:hinting=full,xft:DejaVu Sans Mono for Powerline:pixelsize=30:antialias=true:hinting=full\""
+alias bigbold="printf '\\e]711;%s\\007' \"xft:Ubuntu Mono derivative Powerline:style=bold:pixelsize=30:antialias=true:hinting=full,xft:DejaVu Sans Mono for Powerline:style=bold:pixelsize=30:antialias=true:hinting=full\""
