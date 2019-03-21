@@ -30,6 +30,10 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_cache_executable_check_failures = 1
 let g:ale_linters = {'python': []}
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['typescript'] = ['prettier']
+let g:ale_fix_on_save = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
@@ -54,6 +58,9 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-liquid'
+
+Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'Quramy/tsuquyomi'
 
 Plug 'briancollins/vim-jst'
 
