@@ -30,10 +30,13 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_cache_executable_check_failures = 1
 let g:ale_linters = {'python': []}
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fixers['typescript'] = ['prettier']
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier']
+\}
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
