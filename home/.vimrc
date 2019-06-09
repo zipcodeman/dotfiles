@@ -36,7 +36,7 @@ let g:ale_fixers = {
 \   'typescript': ['prettier']
 \}
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install \|\| yes \| ./install --32' }
 Plug 'junegunn/fzf.vim'
@@ -228,6 +228,8 @@ set formatoptions+=o
 autocmd BufNewFile *.rs 0r ~/.vim-license-headers/apache-mit.txt.slash
 autocmd BufNewFile *.js 0r ~/.vim-license-headers/apache-mit.txt.slash
 autocmd BufNewFile *.jsx 0r ~/.vim-license-headers/apache-mit.txt.slash
+autocmd BufNewFile *.ts 0r ~/.vim-license-headers/apache-mit.txt.slash
+autocmd BufNewFile *.tsx 0r ~/.vim-license-headers/apache-mit.txt.slash
 autocmd BufNewFile *.rb 0r ~/.vim-license-headers/apache-mit.txt.hash
 autocmd BufNewFile *.vim 0r  ~/.vim-license-headers/apache-mit.txt.quote
 autocmd BufNewFile *.tex 0r  ~/.vim-license-headers/apache-mit.txt.percent
