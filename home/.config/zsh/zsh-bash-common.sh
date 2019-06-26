@@ -31,6 +31,7 @@ PATH=$HOME/.local/bin:$PATH
 PATH=$HOME/Projects/woff2/:$PATH
 PATH=$HOME/.yarn/bin:$PATH
 PATH=$HOME/Projects/fuchsia/.jiri_root/bin:$PATH
+PATH=$PATH:$HOME/Projects/cobalt/sysroot/bin
 
 source $HOME/.cargo/env
 
