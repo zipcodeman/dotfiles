@@ -44,6 +44,7 @@ alias rm='rm -i'
 alias ls='ls --color=always'
 alias update-vim='vim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qall'
 alias tmux='tmux -2'
+alias t='todo.sh'
 
 big_echo() {
   echo "####$(echo $@ | sed 's/./#/g')####"

@@ -140,7 +140,9 @@ Plug 'derekwyatt/vim-scala'
 
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 
-Plug 'https://fuchsia.googlesource.com/garnet/', { 'rtp': 'public/lib/fidl/tools/vim' }
+Plug 'https://fuchsia.googlesource.com/fuchsia/', { 'rtp': 'garnet/public/lib/fidl/tools/vim' }
+
+Plug 'vim-scripts/todo-txt.vim'
 
 call plug#end()
 filetype plugin indent on

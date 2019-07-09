@@ -8,10 +8,8 @@ plugins=(
   cp
   git
   yarn
-  taskwarrior
 )
 
-source ~/.config/zsh/zsh-bash-common.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [[ -s '/etc/zsh_command_not_found' ]]; then
@@ -26,5 +24,7 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+source ~/.config/zsh/zsh-bash-common.sh
+
 alias bigfont="printf '\\e]710;%s\\007' \"xft:Ubuntu Mono derivative Powerline:pixelsize=30:antialias=true:hinting=full,xft:DejaVu Sans Mono for Powerline:pixelsize=30:antialias=true:hinting=full\""
 alias bigbold="printf '\\e]711;%s\\007' \"xft:Ubuntu Mono derivative Powerline:style=bold:pixelsize=30:antialias=true:hinting=full,xft:DejaVu Sans Mono for Powerline:style=bold:pixelsize=30:antialias=true:hinting=full\""
