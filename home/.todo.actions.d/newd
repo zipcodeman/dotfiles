@@ -2,6 +2,12 @@
 
 set -e
 
-result=$(/usr/bin/yad --title="Add new todo.txt item" --form --field="Todo")
+if [ "$1" = "usage" ]; then
+  echo "    newd"
+  echo "      Creates a dialog for adding a new todo."
+  exit 0
+fi
 
-todo.sh add "$(echo $result | cut -d'|' -f1)"
+result=$(yad --title="Add new todo.txt item" --separator="" --form --field="Todo")
+
+todo.sh add "$result"

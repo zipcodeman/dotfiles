@@ -7,7 +7,6 @@ plugins=(
   common-aliases
   cp
   git
-  yarn
 )
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
