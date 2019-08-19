@@ -73,7 +73,7 @@ Plug 'elzr/vim-json'
 
 " For snippet_complete marker.
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+  set conceallevel=2
 endif
 
 Plug 'altercation/vim-colors-solarized'
