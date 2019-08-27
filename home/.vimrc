@@ -104,6 +104,22 @@ if has('nvim')
 
   let g:deoplete#enable_at_startup = 1
   inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+  let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rls'],
+    \ }
+
+  " Automatically start language servers.
+  let g:LanguageClient_autoStart = 1
+
+  " Maps K to hover, gd to goto definition, F2 to rename
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()
 else
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
   set hidden
