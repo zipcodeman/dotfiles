@@ -32,6 +32,8 @@
   push-review = !sh -c 'git push origin HEAD:refs/for/${1-master}${2-}' -
   push-wip = !sh -c 'git push origin HEAD:refs/for/${1-master}%wip${2-}' -
   push-ready = !sh -c 'git push origin HEAD:refs/for/${1-master}%ready${2-}' -
+  sq = rebase -i --autosquash
+  autoprune = !sh -c 'git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d'
 
 [pull]
   rebase = true

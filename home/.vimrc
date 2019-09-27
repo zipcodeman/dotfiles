@@ -111,6 +111,8 @@ if has('nvim')
     \ }
   let g:LanguageClient_serverCommands = {
     \ 'rust': ['rls'],
+    \ 'cpp': [expand('~/Projects/cobalt/sysroot/bin/clangd')],
+    \ 'python': [expand('~/.local/bin/pyls')],
     \ }
 
   " Automatically start language servers.
@@ -252,6 +254,11 @@ autocmd BufNewFile *.rb 0r ~/.vim-license-headers/apache-mit.txt.hash
 autocmd BufNewFile *.vim 0r  ~/.vim-license-headers/apache-mit.txt.quote
 autocmd BufNewFile *.tex 0r  ~/.vim-license-headers/apache-mit.txt.percent
 
+set completeopt=menu,noinsert
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
+  "call deoplete#custom#option('auto_complete_delay', 200)
+  call deoplete#custom#source('LanguageClient',
+            \ 'min_pattern_length',
+            \ 2)
 endif
