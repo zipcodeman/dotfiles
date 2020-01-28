@@ -33,7 +33,7 @@ let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
-\   'typescript': ['prettier']
+\   'typescript': ['tslint'],
 \}
 let g:ale_fix_on_save = 1
 " let g:ale_completion_enabled = 1
@@ -146,10 +146,6 @@ let g:signify_vcs_list = ['git']
 Plug 'vim-scripts/vim-auto-save', { 'for': 'markdown' }
 Plug 'reedes/vim-pencil', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
-
-Plug 'Chiel92/vim-autoformat'
-let g:formatter_yapf_style = 'google'
-" au BufWrite * :Autoformat
 
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
