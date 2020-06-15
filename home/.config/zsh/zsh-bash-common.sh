@@ -1,6 +1,6 @@
 export EDITOR=nvim
 export LC_ALL=en_US.UTF-8
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!.clangd/*"'
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
 
 if [ ! -d $HOME/.homesick/repos/homeshick ]; then
