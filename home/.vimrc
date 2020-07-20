@@ -110,7 +110,7 @@ if has('nvim')
     \ 'do': 'bash install.sh',
     \ }
   let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rls'],
+    \ 'rust': ['rust-analyzer'],
     \ 'cpp': [expand('~/Projects/cobalt/sysroot/bin/clangd')],
     \ 'python': [expand('~/.local/bin/pyls')],
     \ }
